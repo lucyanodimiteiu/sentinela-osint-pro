@@ -2,7 +2,7 @@ name: OSINT Sentinela Automat
 on:
  schedule:
  - cron: '0 0 * * *'
- workflow_dispatch:
+ workflow_dispatch: {}
 jobs:
  scan:
  runs-on: ubuntu-latest
@@ -29,5 +29,5 @@ jobs:
  git config --local user.email "grigore@buncar.ai"
  git config --local user.name "Grigore Openclaw"
  git add raport_activ.txt
- git commit -m "Sentinela: Fix Syntax & Scan $(date)" || echo "No changes"
+ git commit -m "Sentinela: Fix L6 & Run $(date)" || echo "No changes"
  git push
