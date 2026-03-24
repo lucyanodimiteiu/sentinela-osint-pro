@@ -1,0 +1,39 @@
+name: OSINT Sentinela Automat
+
+on:
+ schedule:
+ - cron: '0 0 * * *' # Every day at midnight UTC
+ workflow_dispatch:
+
+jobs:
+ scan:
+ runs-on: ubuntu-latest
+ permissions:
+ contents: write
+ steps:
+ - name: Checkout Repo
+ uses: actions/checkout@v4
+
+ - name: Setup Go
+ uses: actions/setup-go@v5
+ with:
+ go-version: '>=1.21.0'
+
+ - name: Instalare Unelte OSINT
+ run: |
+ go install -v github.com/projectdiscovery/subfinder/v2/cmd/subfinder@latest
+ go install -v github.com/projectdiscovery/httpx/cmd/httpx@latest
+ sudo cp ~/go/bin/* /usr/local/bin/
+
+ - name: Scanare Automată (Target: Google)
+ run: |
+ subfinder -d google.com -silent > subdomenii_raw.txt
+ httpx -l subdomenii_raw.txt -mc 200 -silent -o raport_activ.txt
+
+ - name: Commit Rezultate
+ run: |
+ git config --local user.email "grigore@buncar.ai"
+ git config --local user.name "Grigore Openclaw"
+ git add raport_activ.txt
+ git commit -m "Sentinela: Raport nou la $(date)" || echo "No changes"
+ git push
