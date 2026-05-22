@@ -24,6 +24,29 @@ jobs:
      run: |
       subfinder -d google.com -silent > subdomenii_raw.txt
       httpx -l subdomenii_raw.txt -mc 200 -silent -o raport_activ.txt
+   - name: Trimite pe Telegram
+     env:
+       TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+       TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+     run: |
+       if [ -f raport_activ.txt ]; then
+         LINES_COUNT=$(wc -l < raport_activ.txt)
+         MESSAGE="🔍 *Sentinela OSINT Pro - Scan Finalizat*%0A📅 Data: $(date '+%Y-%m-%d %H:%M:%S')%0A🌐 Țintă: google.com%0A✅ Subdomenii active: *${LINES_COUNT}*"
+         
+         # Trimitere mesaj de stare
+         curl -s -X POST "https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage" \
+           -d chat_id="${TELEGRAM_CHAT_ID}" \
+           -d text="${MESSAGE}" \
+           -d parse_mode="Markdown"
+         
+         # Trimitere fișier raport
+         curl -s -X POST "https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendDocument" \
+           -F chat_id="${TELEGRAM_CHAT_ID}" \
+           -F document=@raport_activ.txt \
+           -F caption="Raportul complet cu subdomeniile active."
+       else
+         echo "Raportul nu a fost gasit!"
+       fi
    - name: Commit Results
      run: |
       git config --local user.email "grigore@buncar.ai"
