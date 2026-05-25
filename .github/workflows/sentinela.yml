@@ -17,13 +17,23 @@ jobs:
       go-version: '>=1.21.0'
    - name: Install Tools
      run: |
+      sudo apt-get update && sudo apt-get install -y chromium-browser zip
       go install -v github.com/projectdiscovery/subfinder/v2/cmd/subfinder@latest
       go install -v github.com/projectdiscovery/httpx/cmd/httpx@latest
+      go install -v github.com/projectdiscovery/nuclei/v3/cmd/nuclei@latest
+      go install -v github.com/sensepost/gowitness@latest
       sudo cp ~/go/bin/* /usr/local/bin/
    - name: Scan Google
      run: |
       subfinder -d google.com -silent > subdomenii_raw.txt
       httpx -l subdomenii_raw.txt -mc 200 -silent -o raport_activ.txt
+      
+      # 1. Fotograful (Gowitness)
+      gowitness file -f raport_activ.txt --disable-logging
+      zip -r poze_subdomenii.zip screenshots/ || echo "Fara poze"
+      
+      # 2. Informatii Publice si Misconfigs (Nuclei - Safe Mode)
+      nuclei -l raport_activ.txt -tags exposure,misconfig,tech -o vulnerabilitati_info.txt -silent || echo "Nuclei a terminat"
    - name: Trimite pe Telegram
      env:
        TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
@@ -39,11 +49,27 @@ jobs:
            -d text="${MESSAGE}" \
            -d parse_mode="Markdown"
          
-         # Trimitere fișier raport
+         # Trimitere fișier raport subdomenii
          curl -s -X POST "https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendDocument" \
            -F chat_id="${TELEGRAM_CHAT_ID}" \
            -F document=@raport_activ.txt \
            -F caption="Raportul complet cu subdomeniile active."
+           
+         # Trimitere raport vulnerabilitati/tehnologii
+         if [ -f vulnerabilitati_info.txt ]; then
+           curl -s -X POST "https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendDocument" \
+             -F chat_id="${TELEGRAM_CHAT_ID}" \
+             -F document=@vulnerabilitati_info.txt \
+             -F caption="🔍 Raport Informații & Expuneri (Nuclei Safe Mode)"
+         fi
+         
+         # Trimitere arhiva poze
+         if [ -f poze_subdomenii.zip ]; then
+           curl -s -X POST "https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendDocument" \
+             -F chat_id="${TELEGRAM_CHAT_ID}" \
+             -F document=@poze_subdomenii.zip \
+             -F caption="📸 Arhiva cu pozele site-urilor (Screenshots)"
+         fi
        else
          echo "Raportul nu a fost gasit!"
        fi
@@ -52,5 +78,6 @@ jobs:
       git config --local user.email "grigore@buncar.ai"
       git config --local user.name "Grigore Openclaw"
       git add raport_activ.txt
-      git commit -m "Sentinela: Fix L6, L8 & Run $(date)" || echo "No changes"
+      if [ -f vulnerabilitati_info.txt ]; then git add vulnerabilitati_info.txt; fi
+      git commit -m "Sentinela: Scan complet + Nuclei info $(date)" || echo "No changes"
       git push
