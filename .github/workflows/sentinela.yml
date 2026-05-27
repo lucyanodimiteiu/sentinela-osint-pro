@@ -23,13 +23,14 @@ jobs:
       go install -v github.com/projectdiscovery/nuclei/v3/cmd/nuclei@latest
       go install -v github.com/sensepost/gowitness@latest
       sudo cp ~/go/bin/* /usr/local/bin/
-   - name: Scan Google
+   - name: Scan Target
      run: |
-      subfinder -d google.com -silent > subdomenii_raw.txt
+      subfinder -d vulnweb.com -silent > subdomenii_raw.txt
       httpx -l subdomenii_raw.txt -mc 200 -silent -o raport_activ.txt
       
       # 1. Fotograful (Gowitness)
-      gowitness file -f raport_activ.txt --disable-logging
+      # Folosim versiunea noua gowitness unde comanda este 'file' direct
+      gowitness file -f raport_activ.txt --disable-logging || echo "Gowitness failed but continuing"
       zip -r poze_subdomenii.zip screenshots/ || echo "Fara poze"
       
       # 2. Informatii Publice si Misconfigs (Nuclei - Safe Mode)
@@ -41,7 +42,7 @@ jobs:
      run: |
        if [ -f raport_activ.txt ]; then
          LINES_COUNT=$(wc -l < raport_activ.txt)
-         MESSAGE="🔍 *Sentinela OSINT Pro - Scan Finalizat*%0A📅 Data: $(date '+%Y-%m-%d %H:%M:%S')%0A🌐 Țintă: google.com%0A✅ Subdomenii active: *${LINES_COUNT}*"
+         MESSAGE="🔍 *Sentinela OSINT Pro - Scan Finalizat*%0A📅 Data: $(date '+%Y-%m-%d %H:%M:%S')%0A🌐 Țintă: vulnweb.com%0A✅ Subdomenii active: *${LINES_COUNT}*"
          
          # Trimitere mesaj de stare
          curl -s -X POST "https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage" \
