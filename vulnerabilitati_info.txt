@@ -2,48 +2,50 @@
 [wordpress-db-exposure] [http] [high] http://rest.vulnweb.com/db.sql [paths="/db.sql"]
 [phpinfo-files] [http] [low] http://rest.vulnweb.com/info.php ["7.1.26"] [paths="/info.php"]
 [aspx-debug-mode] [http] [info] http://testaspnet.vulnweb.com/Foobar-debug.aspx
-[cookies-without-httponly] [javascript] [info] testasp.vulnweb.com ["ASPSESSIONIDCSDCBSDD"]
-[cookies-without-secure] [javascript] [info] testasp.vulnweb.com ["ASPSESSIONIDCSDCBSDD"]
+[cookies-without-httponly] [javascript] [info] testasp.vulnweb.com ["ASPSESSIONIDCSBDBSDD"]
+[cookies-without-secure] [javascript] [info] testasp.vulnweb.com ["ASPSESSIONIDCSBDBSDD"]
 [cookies-without-secure] [javascript] [info] testaspnet.vulnweb.com ["ASP","NET_SessionId"]
-[waf-detect:aspgeneric] [http] [info] http://testaspnet.vulnweb.com
-[waf-detect:apachegeneric] [http] [info] http://rest.vulnweb.com
-[http-missing-security-headers:strict-transport-security] [http] [info] http://rest.vulnweb.com
-[http-missing-security-headers:content-security-policy] [http] [info] http://rest.vulnweb.com
-[http-missing-security-headers:x-content-type-options] [http] [info] http://rest.vulnweb.com
-[http-missing-security-headers:x-permitted-cross-domain-policies] [http] [info] http://rest.vulnweb.com
+[microsoft-iis-version] [http] [info] http://testasp.vulnweb.com ["Microsoft-IIS/8.5"]
+[microsoft-iis-version] [http] [info] http://testaspnet.vulnweb.com ["Microsoft-IIS/8.5"]
+[tech-detect:google-font-api] [http] [info] http://rest.vulnweb.com
+[tech-detect:php] [http] [info] http://rest.vulnweb.com
+[missing-cookie-samesite-strict] [http] [info] http://testaspnet.vulnweb.com ["ASP.NET_SessionId=0vx42cq4ek4wvv45f5pn4k55; path=/; HttpOnly"]
+[tech-detect:microsoft-asp.net] [http] [info] http://testaspnet.vulnweb.com
+[tech-detect:ms-iis] [http] [info] http://testaspnet.vulnweb.com
+[trace-axd-expose] [http] [low] http://testasp.vulnweb.com/Trace.axd
+[trace-axd-expose] [http] [low] http://testaspnet.vulnweb.com/Trace.axd
+[missing-sri] [http] [info] http://rest.vulnweb.com/ ["https://fonts.googleapis.com/css?family=Nunito:200,600"]
+[aspnet-version-detect] [http] [info] http://testaspnet.vulnweb.com ["2.0.50727"]
 [http-missing-security-headers:referrer-policy] [http] [info] http://rest.vulnweb.com
 [http-missing-security-headers:cross-origin-embedder-policy] [http] [info] http://rest.vulnweb.com
+[http-missing-security-headers:cross-origin-opener-policy] [http] [info] http://rest.vulnweb.com
 [http-missing-security-headers:cross-origin-resource-policy] [http] [info] http://rest.vulnweb.com
+[http-missing-security-headers:strict-transport-security] [http] [info] http://rest.vulnweb.com
+[http-missing-security-headers:content-security-policy] [http] [info] http://rest.vulnweb.com
 [http-missing-security-headers:permissions-policy] [http] [info] http://rest.vulnweb.com
 [http-missing-security-headers:x-frame-options] [http] [info] http://rest.vulnweb.com
-[http-missing-security-headers:cross-origin-opener-policy] [http] [info] http://rest.vulnweb.com
-[http-missing-security-headers:cross-origin-opener-policy] [http] [info] http://testasp.vulnweb.com
-[http-missing-security-headers:cross-origin-resource-policy] [http] [info] http://testasp.vulnweb.com
-[http-missing-security-headers:x-content-type-options] [http] [info] http://testasp.vulnweb.com
+[http-missing-security-headers:x-content-type-options] [http] [info] http://rest.vulnweb.com
+[http-missing-security-headers:x-permitted-cross-domain-policies] [http] [info] http://rest.vulnweb.com
+[http-missing-security-headers:referrer-policy] [http] [info] http://testasp.vulnweb.com
 [http-missing-security-headers:cross-origin-embedder-policy] [http] [info] http://testasp.vulnweb.com
+[http-missing-security-headers:cross-origin-opener-policy] [http] [info] http://testasp.vulnweb.com
 [http-missing-security-headers:strict-transport-security] [http] [info] http://testasp.vulnweb.com
 [http-missing-security-headers:content-security-policy] [http] [info] http://testasp.vulnweb.com
 [http-missing-security-headers:permissions-policy] [http] [info] http://testasp.vulnweb.com
 [http-missing-security-headers:x-frame-options] [http] [info] http://testasp.vulnweb.com
 [http-missing-security-headers:x-permitted-cross-domain-policies] [http] [info] http://testasp.vulnweb.com
-[http-missing-security-headers:referrer-policy] [http] [info] http://testasp.vulnweb.com
+[http-missing-security-headers:cross-origin-resource-policy] [http] [info] http://testasp.vulnweb.com
+[http-missing-security-headers:x-content-type-options] [http] [info] http://testasp.vulnweb.com
+[http-missing-security-headers:cross-origin-embedder-policy] [http] [info] http://testaspnet.vulnweb.com
 [http-missing-security-headers:cross-origin-opener-policy] [http] [info] http://testaspnet.vulnweb.com
 [http-missing-security-headers:cross-origin-resource-policy] [http] [info] http://testaspnet.vulnweb.com
 [http-missing-security-headers:content-security-policy] [http] [info] http://testaspnet.vulnweb.com
-[http-missing-security-headers:referrer-policy] [http] [info] http://testaspnet.vulnweb.com
-[http-missing-security-headers:strict-transport-security] [http] [info] http://testaspnet.vulnweb.com
 [http-missing-security-headers:permissions-policy] [http] [info] http://testaspnet.vulnweb.com
 [http-missing-security-headers:x-frame-options] [http] [info] http://testaspnet.vulnweb.com
-[http-missing-security-headers:x-content-type-options] [http] [info] http://testaspnet.vulnweb.com
 [http-missing-security-headers:x-permitted-cross-domain-policies] [http] [info] http://testaspnet.vulnweb.com
-[http-missing-security-headers:cross-origin-embedder-policy] [http] [info] http://testaspnet.vulnweb.com
-[aspnet-version-detect] [http] [info] http://testaspnet.vulnweb.com ["2.0.50727"]
-[trace-axd-expose] [http] [low] http://testasp.vulnweb.com/Trace.axd
-[trace-axd-expose] [http] [low] http://testaspnet.vulnweb.com/Trace.axd
-[microsoft-iis-version] [http] [info] http://testaspnet.vulnweb.com ["Microsoft-IIS/8.5"]
-[missing-sri] [http] [info] http://rest.vulnweb.com/ ["https://fonts.googleapis.com/css?family=Nunito:200,600"]
-[tech-detect:google-font-api] [http] [info] http://rest.vulnweb.com
-[tech-detect:php] [http] [info] http://rest.vulnweb.com
+[http-missing-security-headers:referrer-policy] [http] [info] http://testaspnet.vulnweb.com
+[http-missing-security-headers:strict-transport-security] [http] [info] http://testaspnet.vulnweb.com
+[http-missing-security-headers:x-content-type-options] [http] [info] http://testaspnet.vulnweb.com
 [apache-detect] [http] [info] http://rest.vulnweb.com ["Apache/2.4.25 (Debian)"]
 [php-eol:version] [http] [info] http://rest.vulnweb.com ["7.1.26"]
 [php-detect] [http] [info] http://rest.vulnweb.com ["7.1.26"]
