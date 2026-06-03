@@ -28,9 +28,8 @@ jobs:
       subfinder -d vulnweb.com -silent > subdomenii_raw.txt
       httpx -l subdomenii_raw.txt -mc 200 -silent -o raport_activ.txt
       
-      # 1. Fotograful (Gowitness)
-      # Folosim versiunea noua gowitness unde comanda este 'file' direct
-      gowitness file -f raport_activ.txt --disable-logging || echo "Gowitness failed but continuing"
+      # 1. Fotograful (Gowitness) - Versiune timeout
+      timeout 5m gowitness file -f raport_activ.txt || echo "Gowitness a intalnit o eroare sau a durat prea mult"
       zip -r poze_subdomenii.zip screenshots/ || echo "Fara poze"
       
       # 2. Informatii Publice si Misconfigs (Nuclei - Safe Mode)
