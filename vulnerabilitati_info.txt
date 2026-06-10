@@ -2,6 +2,6 @@
 [wordpress-db-exposure] [http] [high] http://rest.vulnweb.com/db.sql [paths="/db.sql"]
 [phpinfo-files] [http] [low] http://rest.vulnweb.com/info.php ["7.1.26"] [paths="/info.php"]
 [aspx-debug-mode] [http] [info] http://testaspnet.vulnweb.com/Foobar-debug.aspx
-[cookies-without-httponly] [javascript] [info] testasp.vulnweb.com ["ASPSESSIONIDASADDSCC"]
-[cookies-without-secure] [javascript] [info] testasp.vulnweb.com ["ASPSESSIONIDASADDSCC"]
+[cookies-without-secure] [javascript] [info] testasp.vulnweb.com ["ASPSESSIONIDASCACTCD"]
+[cookies-without-httponly] [javascript] [info] testasp.vulnweb.com ["ASPSESSIONIDASCACTCD"]
 [cookies-without-secure] [javascript] [info] testaspnet.vulnweb.com ["ASP","NET_SessionId"]
