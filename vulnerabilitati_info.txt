@@ -1,55 +1,40 @@
-[wordpress-db-exposure] [http] [high] http://rest.vulnweb.com/db.sql [paths="/db.sql"]
 [mysql-dump] [http] [medium] http://rest.vulnweb.com/db.sql [paths="/db.sql"]
+[wordpress-db-exposure] [http] [high] http://rest.vulnweb.com/db.sql [paths="/db.sql"]
 [phpinfo-files] [http] [low] http://rest.vulnweb.com/info.php ["7.1.26"] [paths="/info.php"]
 [aspx-debug-mode] [http] [info] http://testaspnet.vulnweb.com/Foobar-debug.aspx
-[cookies-without-httponly] [javascript] [info] testasp.vulnweb.com ["ASPSESSIONIDACCTQBTB"]
-[cookies-without-secure] [javascript] [info] testasp.vulnweb.com ["ASPSESSIONIDACCTQBTB"]
+[cookies-without-secure] [javascript] [info] testasp.vulnweb.com ["ASPSESSIONIDAAATQBSA"]
 [cookies-without-secure] [javascript] [info] testaspnet.vulnweb.com ["ASP","NET_SessionId"]
+[cookies-without-httponly] [javascript] [info] testasp.vulnweb.com ["ASPSESSIONIDAAATQBSA"]
 [waf-detect:aspgeneric] [http] [info] http://testasp.vulnweb.com
 [waf-detect:aspgeneric] [http] [info] http://testaspnet.vulnweb.com
 [waf-detect:apachegeneric] [http] [info] http://rest.vulnweb.com
-[http-missing-security-headers:cross-origin-embedder-policy] [http] [info] http://rest.vulnweb.com
-[http-missing-security-headers:content-security-policy] [http] [info] http://rest.vulnweb.com
-[http-missing-security-headers:x-content-type-options] [http] [info] http://rest.vulnweb.com
-[http-missing-security-headers:referrer-policy] [http] [info] http://rest.vulnweb.com
-[http-missing-security-headers:cross-origin-opener-policy] [http] [info] http://rest.vulnweb.com
-[http-missing-security-headers:cross-origin-resource-policy] [http] [info] http://rest.vulnweb.com
-[http-missing-security-headers:strict-transport-security] [http] [info] http://rest.vulnweb.com
-[http-missing-security-headers:permissions-policy] [http] [info] http://rest.vulnweb.com
-[http-missing-security-headers:x-frame-options] [http] [info] http://rest.vulnweb.com
-[http-missing-security-headers:x-permitted-cross-domain-policies] [http] [info] http://rest.vulnweb.com
-[http-missing-security-headers:strict-transport-security] [http] [info] http://testasp.vulnweb.com
-[http-missing-security-headers:x-frame-options] [http] [info] http://testasp.vulnweb.com
-[http-missing-security-headers:x-content-type-options] [http] [info] http://testasp.vulnweb.com
-[http-missing-security-headers:referrer-policy] [http] [info] http://testasp.vulnweb.com
-[http-missing-security-headers:cross-origin-opener-policy] [http] [info] http://testasp.vulnweb.com
-[http-missing-security-headers:content-security-policy] [http] [info] http://testasp.vulnweb.com
-[http-missing-security-headers:permissions-policy] [http] [info] http://testasp.vulnweb.com
-[http-missing-security-headers:x-permitted-cross-domain-policies] [http] [info] http://testasp.vulnweb.com
-[http-missing-security-headers:cross-origin-embedder-policy] [http] [info] http://testasp.vulnweb.com
-[http-missing-security-headers:cross-origin-resource-policy] [http] [info] http://testasp.vulnweb.com
-[http-missing-security-headers:content-security-policy] [http] [info] http://testaspnet.vulnweb.com
-[http-missing-security-headers:permissions-policy] [http] [info] http://testaspnet.vulnweb.com
-[http-missing-security-headers:x-frame-options] [http] [info] http://testaspnet.vulnweb.com
-[http-missing-security-headers:x-permitted-cross-domain-policies] [http] [info] http://testaspnet.vulnweb.com
-[http-missing-security-headers:referrer-policy] [http] [info] http://testaspnet.vulnweb.com
-[http-missing-security-headers:cross-origin-resource-policy] [http] [info] http://testaspnet.vulnweb.com
-[http-missing-security-headers:strict-transport-security] [http] [info] http://testaspnet.vulnweb.com
-[http-missing-security-headers:x-content-type-options] [http] [info] http://testaspnet.vulnweb.com
-[http-missing-security-headers:cross-origin-embedder-policy] [http] [info] http://testaspnet.vulnweb.com
-[http-missing-security-headers:cross-origin-opener-policy] [http] [info] http://testaspnet.vulnweb.com
-[apache-detect] [http] [info] http://rest.vulnweb.com ["Apache/2.4.25 (Debian)"]
-[php-eol:version] [http] [info] http://rest.vulnweb.com ["7.1.26"]
-[php-detect] [http] [info] http://rest.vulnweb.com ["7.1.26"]
 [aspnet-version-detect] [http] [info] http://testaspnet.vulnweb.com ["2.0.50727"]
 [microsoft-iis-version] [http] [info] http://testaspnet.vulnweb.com ["Microsoft-IIS/8.5"]
 [microsoft-iis-version] [http] [info] http://testasp.vulnweb.com ["Microsoft-IIS/8.5"]
-[missing-cookie-samesite-strict] [http] [info] http://testasp.vulnweb.com ["ASPSESSIONIDACCTQBTB=NCCNKHFAKBOOPEMNLLOJNNOP; path=/"]
+[missing-sri] [http] [info] http://rest.vulnweb.com/ ["https://fonts.googleapis.com/css?family=Nunito:200,600"]
+[missing-cookie-samesite-strict] [http] [info] http://testasp.vulnweb.com ["ASPSESSIONIDAAATQBSA=OMNINDCBMEIOAECBJOMAAAGB; path=/"]
 [tech-detect:dreamweaver] [http] [info] http://testasp.vulnweb.com
 [tech-detect:ms-iis] [http] [info] http://testasp.vulnweb.com
-[missing-cookie-samesite-strict] [http] [info] http://testaspnet.vulnweb.com ["ASP.NET_SessionId=lgbzjw452plilm20ohkmto3u; path=/; HttpOnly"]
+[missing-cookie-samesite-strict] [http] [info] http://testaspnet.vulnweb.com ["ASP.NET_SessionId=mekt2nqrkr1xt455rmwdyhus; path=/; HttpOnly"]
 [tech-detect:microsoft-asp.net] [http] [info] http://testaspnet.vulnweb.com
 [tech-detect:ms-iis] [http] [info] http://testaspnet.vulnweb.com
-[tech-detect:google-font-api] [http] [info] http://rest.vulnweb.com
-[tech-detect:php] [http] [info] http://rest.vulnweb.com
-[missing-sri] [http] [info] http://rest.vulnweb.com/ ["https://fonts.googleapis.com/css?family=Nunito:200,600"]
+[http-missing-security-headers:cross-origin-opener-policy] [http] [info] http://testasp.vulnweb.com
+[http-missing-security-headers:cross-origin-resource-policy] [http] [info] http://testasp.vulnweb.com
+[http-missing-security-headers:permissions-policy] [http] [info] http://testasp.vulnweb.com
+[http-missing-security-headers:x-permitted-cross-domain-policies] [http] [info] http://testasp.vulnweb.com
+[http-missing-security-headers:referrer-policy] [http] [info] http://testasp.vulnweb.com
+[http-missing-security-headers:strict-transport-security] [http] [info] http://testasp.vulnweb.com
+[http-missing-security-headers:content-security-policy] [http] [info] http://testasp.vulnweb.com
+[http-missing-security-headers:x-frame-options] [http] [info] http://testasp.vulnweb.com
+[http-missing-security-headers:x-content-type-options] [http] [info] http://testasp.vulnweb.com
+[http-missing-security-headers:cross-origin-embedder-policy] [http] [info] http://testasp.vulnweb.com
+[http-missing-security-headers:strict-transport-security] [http] [info] http://testaspnet.vulnweb.com
+[http-missing-security-headers:permissions-policy] [http] [info] http://testaspnet.vulnweb.com
+[http-missing-security-headers:x-frame-options] [http] [info] http://testaspnet.vulnweb.com
+[http-missing-security-headers:x-content-type-options] [http] [info] http://testaspnet.vulnweb.com
+[http-missing-security-headers:referrer-policy] [http] [info] http://testaspnet.vulnweb.com
+[http-missing-security-headers:cross-origin-opener-policy] [http] [info] http://testaspnet.vulnweb.com
+[http-missing-security-headers:content-security-policy] [http] [info] http://testaspnet.vulnweb.com
+[http-missing-security-headers:x-permitted-cross-domain-policies] [http] [info] http://testaspnet.vulnweb.com
+[http-missing-security-headers:cross-origin-embedder-policy] [http] [info] http://testaspnet.vulnweb.com
+[http-missing-security-headers:cross-origin-resource-policy] [http] [info] http://testaspnet.vulnweb.com
